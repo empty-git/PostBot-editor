@@ -19,14 +19,25 @@ async def change_text(bot: Bot, message: Message) -> None:
         try:
             channel_id = message.peer_id.channel_id
             # await bot.send_message(chat_id=channel_id, text="dsfghtregszefsez\nfgdrg\n:) @HUI\nesfyre5dyedyr")
-            await bot.edit_message_caption(chat_id=f"-100{channel_id}",
-                                           message_id=message.id,
-                                           caption=replace_text(
-                                               message_text=message.message,
-                                               bad_word=MESSAGE_FOR_REMOVE,
-                                               set_word=MESSAGE_FOR_SET
-                                           )
-                                           )
+            if hasattr(message,'media'):
+                if message.media is not None:
+                    await bot.edit_message_caption(chat_id=f"-100{channel_id}",
+                                                   message_id=message.id,
+                                                   caption=replace_text(
+                                                       message_text=message.message,
+                                                       bad_word=MESSAGE_FOR_REMOVE,
+                                                       set_word=MESSAGE_FOR_SET
+                                                   )
+                                                   )
+                else:
+                    await bot.edit_message_text(chat_id=f"-100{channel_id}",
+                                               message_id=message.id,
+                                               text=replace_text(
+                                                   message_text=message.message,
+                                                   bad_word=MESSAGE_FOR_REMOVE,
+                                                   set_word=MESSAGE_FOR_SET
+                                               )
+                                               )
             print(f"Message with id {message.id} successfully edited.")
 
         except Exception as e:
