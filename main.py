@@ -5,9 +5,6 @@ from telethon.sessions import StringSession
 
 from config import BOT_API_TOKEN, SESSION_TOKEN, CHANNEL_ENTITY
 from utils.message_tools import get_messages
-import warnings
-
-warnings.filterwarnings("ignore", category=DeprecationWarning)
 bot = Bot(token=BOT_API_TOKEN)
 dp = Dispatcher(bot)
 client = TelegramClient(StringSession(SESSION_TOKEN),
