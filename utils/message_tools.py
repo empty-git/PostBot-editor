@@ -18,7 +18,6 @@ async def change_text(bot: Bot, message: Message) -> None:
     async with await bot.get_session():
         try:
             channel_id = message.peer_id.channel_id
-            # await bot.send_message(chat_id=channel_id, text="dsfghtregszefsez\nfgdrg\n:) @HUI\nesfyre5dyedyr")
             if hasattr(message,'media'):
                 if message.media is not None:
                     await bot.edit_message_caption(chat_id=f"-100{channel_id}",
@@ -39,12 +38,12 @@ async def change_text(bot: Bot, message: Message) -> None:
                                                )
                                                )
             print(f"Message with id {message.id} successfully edited.")
-
         except Exception as e:
             print(f"Error by level with change_text function: {e}")
             print(message)
         finally:
-            await bot.session.close()
+            session = await bot.get_session()
+            await session.close()
 
 
 def replace_text(message_text: str, bad_word: str, set_word: str) -> str:

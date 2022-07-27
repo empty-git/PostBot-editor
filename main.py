@@ -1,4 +1,6 @@
 import asyncio
+import warnings
+
 from aiogram import Bot, Dispatcher, executor, types
 from telethon import TelegramClient
 from telethon.sessions import StringSession
@@ -14,9 +16,8 @@ client = TelegramClient(StringSession(SESSION_TOKEN),
                         app_version="0.0.4 beta")
 client.start()
 
-
 async def run():
     await get_messages(bot=bot, client=client, channel_entity=CHANNEL_ENTITY)
     print("All messages edited.")
-
+warnings.simplefilter('ignore', DeprecationWarning)
 asyncio.get_event_loop().run_until_complete(run())
