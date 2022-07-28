@@ -1,3 +1,4 @@
+import asyncio
 from typing import Union
 
 from aiogram import Bot
@@ -9,7 +10,7 @@ from config import MESSAGE_FOR_REMOVE, MESSAGE_FOR_SET
 
 async def get_messages(bot: Bot, client: TelegramClient, channel_entity: Union[str | int]) -> None:
     """function for get entity channel by id"""
-    async for message in client.iter_messages(channel_entity):
+    async for message in client.iter_messages(channel_entity, reverse = True):
         await change_text(bot=bot, message=message)
 
 
@@ -44,6 +45,7 @@ async def change_text(bot: Bot, message: Message) -> None:
         finally:
             session = await bot.get_session()
             await session.close()
+        await asyncio.sleep(10)
 
 
 def replace_text(message_text: str, bad_word: str, set_word: str) -> str:
