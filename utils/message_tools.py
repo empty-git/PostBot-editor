@@ -21,8 +21,8 @@ async def change_keyboard(bot: Bot, message: Message) -> None:
             channel_id = message.peer_id.channel_id
             if hasattr(message,'media'):
                 url_keyboard = InlineKeyboardMarkup(row_width=2)
-                url_keyboard.add(InlineKeyboardButton('Больше новостей ✅', url='https://t.me/hub_404'))
-                url_keyboard.add(InlineKeyboardButton('Хочешь заказать рекламу?  📈', url='https://t.me/contact_alisa'))
+                url_keyboard.add(InlineKeyboardButton('Больше новостей ✅', url='https://t.me/hobby'))
+                url_keyboard.add(InlineKeyboardButton('Хочешь заказать рекламу?  📈', url='https://t.me/manager'))
                 if message.media is not None:
                     await bot.edit_message_reply_markup(chat_id=f"-100{channel_id}",
                                                    message_id=message.id,
